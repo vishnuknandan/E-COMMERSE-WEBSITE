@@ -1,0 +1,293 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!--FONT AWESOME-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!--GOOGLE FONTS-->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Play&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <title>
+       {% block title %}
+       {% endblock title%} 
+    </title>
+    <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-top">
+        <div class="container">
+            <a href=""><svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M368 128c0 44.4-25.4 83.5-64 106.4V256c0 17.7-14.3 32-32 32H176c-17.7 0-32-14.3-32-32V234.4c-38.6-23-64-62.1-64-106.4C80 57.3 144.5 0 224 0s144 57.3 144 128zM168 176a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm144-32a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM3.4 273.7c7.9-15.8 27.1-22.2 42.9-14.3L224 348.2l177.7-88.8c15.8-7.9 35-1.5 42.9 14.3s1.5 35-14.3 42.9L295.6 384l134.8 67.4c15.8 7.9 22.2 27.1 14.3 42.9s-27.1 22.2-42.9 14.3L224 419.8 46.3 508.6c-15.8 7.9-35 1.5-42.9-14.3s-1.5-35 14.3-42.9L152.4 384 17.7 316.6C1.9 308.7-4.5 289.5 3.4 273.7z"/></svg></a>
+            <a class="navbar-brand mb-2" href="#">
+          <em><a class="navbar-brand" href="#">E-BlackCapz</a></em>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Register</a>
+              </li>
+              <!-- <li class="nav-item " >
+                <a class="nav-link active" href="#">Collections</a>
+              </li> -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Filter
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Mobile & Accessories</a></li>
+                  <li><a class="dropdown-item" href="#">Clothing & Accessories</a></li>
+                  <li><a class="dropdown-item" href="#">Food Products</a></li>
+                  <li><a class="dropdown-item" href="#">Fruits & Vegitables</a></li>
+                  <li><a class="dropdown-item" href="#">Health Care</a></li>
+                  <li><a class="dropdown-item" href="#">Furniture</a></li>
+                  <li><a class="dropdown-item" href="#">Gadgets</a></li>
+                  <li><a class="dropdown-item" href="#">Home & Kitchen</a></li>
+                  <li><a class="dropdown-item" href="#">Books & Accessories</a></li>
+                  <li><a class="dropdown-item" href="#">Camera & Accessories</a></li>
+                  <li><a class="dropdown-item" href="#">Bag & Wallets</a></li>
+                  <li><a class="dropdown-item" href="#">Cookwear & Serverwear</a></li>
+                  <li><a class="dropdown-item" href="#">Shoes & Footwear</a></li>
+                  <li><a class="dropdown-item" href="#">Toys & Games</a></li>
+                  <li><a class="dropdown-item" href="#">Jewellery</a></li>
+                </ul>
+              </li>
+              <li class="nav-item " >
+                <a class="nav-link active" href="#">Collections</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>   
+      </div>
+    {% block content %}
+    <header>
+        
+              
+      
+         
+            <!-- Breadcrumb -->
+          </div>
+        </div>
+        <!-- Heading -->
+    </header>
+    
+ 
+      
+      <!-- content -->
+      <section style="background-color:aliceblue; margin-top: 30px;" class="py-5 " >
+     
+        <div class="container">
+            <h4 class="title text-dark">
+                        <div class="h4 pb-2 mb-4 text-dark text-center border-bottom border-danger my-3">{{data.name}}</div>
+                        <br>    
+                </h4>
+          <div class="row gx-5">
+            <aside class="col-lg-6">
+              <div style="margin-top: 100px;" class="d-flex justify-content-center">
+                <img src="{{data.product_image.url}}" alt="">
+              </div>
+              <a style="margin-top: 120px;" href="{% url 'home' %}" class="btn btn-secondary shadow-0"> More </a>
+              <!-- thumbs-wrap.// -->
+              <!-- gallery-wrap .end// -->
+            </aside>
+            <main class="col-lg-6">
+              <div class="ps-lg-3">
+
+                <div class="d-flex flex-row my-3">
+                  <div class="text-warning mb-1 me-2">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span class="ms-1">
+                      4.5
+                    </span>
+                  </div>
+                  <span class="text-muted"><i class="fas fa-shopping-basket fa-sm mx-1"></i>{{data.quantity}}</span>
+                  <span class="text-success ms-2">In stock</span>
+                </div>
+      
+                <div class="mb-3">
+                  <span class="h5">{{data.selling_price}}/-</span>
+                  <span class="text-muted">IND</span>
+                </div>
+      
+                <p>
+                  {{data.description}}
+                </p>
+      
+                <div class="row">
+                  <dt class="col-3">Name:</dt>
+                  <dd class="col-9">{{data.name}}</dd>
+      
+                  <dt class="col-3">Price</dt>
+                  <dd class="col-9">{{data.original_price}}</dd>
+      
+                  <dt class="col-3">Market Price</dt>
+                  <dd class="col-9">{{data.selling_price}}</dd>
+      
+                  <dt class="col-3">stock</dt>
+                  <dd class="col-9">{{data.quantity}}</dd>
+                </div>
+      
+                <hr />
+      
+                <!-- <div class="row mb-4">
+                  <div class="col-md-4 col-6">
+                    <label class="mb-2">Size</label>
+                    <select class="form-select border border-secondary" style="height: 35px;">
+                      <option>Small</option>
+                      <option>Medium</option>
+                      <option>Large</option>
+                    </select>
+                  </div> -->
+                  <!-- col.// -->
+                  <!-- <div class="col-md-4 col-6 mb-3">
+                    <label class="mb-2 d-block">Quantity</label>
+                    <div class="input-group mb-3" style="width: 170px;">
+                      <button class="btn btn-white border border-secondary px-3" type="button" id="" name="" data-mdb-ripple-color="dark">
+                        <i class="fas fa-minus"></i>
+                      </button>
+                      <input type="text" class="form-control text-center border border-secondary" placeholder="14" aria-label="Example text with button addon" aria-describedby="button-addon1" />
+                      <button class="btn btn-white border border-secondary px-3" type="button" id="" name="" data-mdb-ripple-color="dark">
+                        <i class="fas fa-plus"></i>
+                      </button>
+                    </div>
+                  </div> -->
+                </div>
+                <a href="{% url 'buy' data.id %}" class="btn btn-warning shadow-0"> Buy now </a>
+                <a href="{% url 'acart' data.id %}" class="btn btn-primary shadow-0"> <i class="me-1 fa fa-shopping-basket"></i> Add to cart </a>
+                <a href="#" class="btn btn-light border border-secondary py-2 icon-hover px-3"> <i class="me-1 fa fa-heart fa-lg"></i> Save </a>
+              </div>
+            </main>
+          </div>
+        </div>
+      </section>
+      <!-- content -->
+      
+      
+                      
+     
+      
+    {% endblock content %}
+
+ 
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+     
+    <!-- <div class="card text-center bg-secondary text-white">
+      <div class="container">
+      <div class="card-header">
+        Bcapz@2024
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">BlackCapz</h5>
+        <p class="card-text">Copyright@2024 BlackCapz ,Inc</p>
+        <a href=""src="hau"></a>
+      </div>
+    </div>
+    </div> -->
+  <!-- footer section start -->
+  <div class="card bg-dark text-white">
+    <div class="container">
+    <div class="card-header">
+      
+    </div>
+    <div class="card-body">
+      
+      <p class="card-text text-center">E-BlackCapz</p>
+      
+    </div>
+  </div>
+</body>
+
+<footer class="bg-dark text-white">
+<div class="container">
+  <div class="row">
+    
+    <div class="col-md-3 col-sm-6">
+      <h5>About Us</h5>
+
+    <address>Bcapz Estore
+      kakanad 
+      <br>kochi kerala
+      <br>
+      678543
+      <br>
+      BlackCapz2024@gmail.com
+    </address>
+    </div>
+
+    
+    <div class="col-md-3 col-sm-6">
+      <h5>About</h5>
+      <ul class="list-unstyled">
+        <li>Contact us</li>
+        <li>About us</li>
+        <li>Careers</li>
+        <li>Bcapz stories</li>
+      </ul>
+    </div>
+
+    
+    <div class="col-md-3 col-sm-6">
+      <h5>Help</h5>
+      <ul class="list-unstyled">
+        <li>Payment</li>
+        <li>Shipping</li>
+        <li>Cancellation and Returns</li>
+        <li>FAQ</li>
+      </ul>
+    </div>
+
+    
+    <div class="col-md-3 col-sm-6">
+      <h5>Consumer Policy</h5>
+      <ul class="list-unstyled">
+        <li>Terms of use</li>
+        <li>Security</li>
+        <li>Privacy</li>
+        <li>Sitemap</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<hr class="my-4">
+
+<div class="bottom-bar">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <p>&copy; 2024-Bcapz.com</p>
+      </div>
+          
+    </div>
+  </div>
+</div>
+
+</footer>
+
+</html>
+
+    
+</body>
+</html>

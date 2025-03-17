@@ -1,0 +1,214 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+
+    
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!--FONT AWESOME-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!--GOOGLE FONTS-->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Play&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <title>
+       {% block title %}
+       {% endblock title%} 
+    </title>
+    <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-top">
+        <div class="container">
+            <a href=""><svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M368 128c0 44.4-25.4 83.5-64 106.4V256c0 17.7-14.3 32-32 32H176c-17.7 0-32-14.3-32-32V234.4c-38.6-23-64-62.1-64-106.4C80 57.3 144.5 0 224 0s144 57.3 144 128zM168 176a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm144-32a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM3.4 273.7c7.9-15.8 27.1-22.2 42.9-14.3L224 348.2l177.7-88.8c15.8-7.9 35-1.5 42.9 14.3s1.5 35-14.3 42.9L295.6 384l134.8 67.4c15.8 7.9 22.2 27.1 14.3 42.9s-27.1 22.2-42.9 14.3L224 419.8 46.3 508.6c-15.8 7.9-35 1.5-42.9-14.3s-1.5-35 14.3-42.9L152.4 384 17.7 316.6C1.9 308.7-4.5 289.5 3.4 273.7z"/></svg></a>
+            <a class="navbar-brand mb-2" href="#">
+              {% if request.user.is_authenticated %}                       
+                <a href="{% url 'ordv' %}"><svg xmlns="http://www.w3.org/2000/svg"  height="1.3em" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M398.5 373.6c95.9-122.1 17.2-233.1 17.2-233.1 45.4 85.8-41.4 170.5-41.4 170.5 105-171.5-60.5-271.5-60.5-271.5 96.9 72.7-10.1 190.7-10.1 190.7 85.8 158.4-68.6 230.1-68.6 230.1s-.4-16.9-2.2-85.7c4.3 4.5 34.5 36.2 34.5 36.2l-24.2-47.4 62.6-9.1-62.6-9.1 20.2-55.5-31.4 45.9c-2.2-87.7-7.8-305.1-7.9-306.9v-2.4 1-1 2.4c0 1-5.6 219-7.9 306.9l-31.4-45.9 20.2 55.5-62.6 9.1 62.6 9.1-24.2 47.4 34.5-36.2c-1.8 68.8-2.2 85.7-2.2 85.7s-154.4-71.7-68.6-230.1c0 0-107-118.1-10.1-190.7 0 0-165.5 99.9-60.5 271.5 0 0-86.8-84.8-41.4-170.5 0 0-78.7 111 17.2 233.1 0 0-26.2-16.1-49.4-77.7 0 0 16.9 183.3 222 185.7h4.1c205-2.4 222-185.7 222-185.7-23.6 61.5-49.9 77.7-49.9 77.7z"/></svg></a>    
+                <a class="navbar-brand mb-2">        
+                {%endif%}
+          <em><a class="navbar-brand " href="#">E-BlackCapz</a></em>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <form class="d-flex" role="search" style="margin-left: 260px;" method="get" action="{% url 'search' %}">
+            {%csrf_token%}
+            <input class="form-control" type="search" placeholder="search your favorates !" aria-label="search" autocomplete="on" style="width: 230px ;" id="search" name="q">   
+            <button class="btn btn-outline-secondary ms-2 text-light" type="submit">search</button>
+          </form>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+              </li>
+              {% if request.user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'logout' %}">logout</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'cartd' %}"><i class="fa-solid fa-cart-shopping"></i></a>
+              </li>
+              {%else%}
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'reg' %}">Register</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'login' %}">login</a>
+              </li>
+              {% endif %}
+              
+             
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  collections
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Mobile & Accessories</a></li>
+                  <li><a class="dropdown-item" href="#">Clothing & Accessories</a></li>
+                  <li><a class="dropdown-item" href="#">Food Products</a></li>
+                  <li><a class="dropdown-item" href="#">Fruits & Vegitables</a></li>
+                  <li><a class="dropdown-item" href="#">Health Care</a></li>
+                  <li><a class="dropdown-item" href="#">Furniture</a></li>
+                  <li><a class="dropdown-item" href="#">Gadgets</a></li>
+                  <li><a class="dropdown-item" href="#">Home & Kitchen</a></li>
+                  <li><a class="dropdown-item" href="#">Books & Accessories</a></li>
+                  <li><a class="dropdown-item" href="#">Camera & Accessories</a></li>
+                  <li><a class="dropdown-item" href="#">Bag & Wallets</a></li>
+                  <li><a class="dropdown-item" href="#">Cookwear & Serverwear</a></li>
+                  <li><a class="dropdown-item" href="#">Shoes & Footwear</a></li>
+                  <li><a class="dropdown-item" href="#">Toys & Games</a></li>
+                  <li><a class="dropdown-item" href="#">Jewellery</a></li>
+                </ul>
+              </li>
+              
+          </div>
+          
+        </div>
+    
+      </nav>
+      <div id="carouselExampleIndicators" class="carousel slide">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{% static 'images/14.jpg' %}" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'images/15.jpg' %}" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'images/3.webp' %}" class="d-block w-100" alt="...">
+          </div>
+          
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    {% block content %}
+    {% endblock content %}
+
+ 
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+     
+    <div class="card bg-dark text-white">
+      <div class="container">
+      <div class="card-header">
+        
+      </div>
+      <div class="card-body">
+        
+        <p class="card-text text-center">E-BlackCapz</p>
+        
+      </div>
+    </div>
+  </body>
+  
+  <footer class="bg-dark text-white">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-3 col-sm-6">
+        <h5>About Us</h5>
+  
+      <address>Bcapz Estore
+        kakanad 
+        <br>kochi kerala
+        <br>
+        678543
+        <br>
+        BlackCapz2024@gmail.com
+      </address>
+      </div>
+  
+      
+      <div class="col-md-3 col-sm-6">
+        <h5>About</h5>
+        <ul class="list-unstyled">
+          <li>Contact us</li>
+          <li>About us</li>
+          <li>Careers</li>
+          <li>Bcapz stories</li>
+        </ul>
+      </div>
+  
+      
+      <div class="col-md-3 col-sm-6">
+        <h5>Help</h5>
+        <ul class="list-unstyled">
+          <li>Payment</li>
+          <li>Shipping</li>
+          <li>Cancellation and Returns</li>
+          <li>FAQ</li>
+        </ul>
+      </div>
+  
+      
+      <div class="col-md-3 col-sm-6">
+        <h5>Consumer Policy</h5>
+        <ul class="list-unstyled">
+          <li>Terms of use</li>
+          <li>Security</li>
+          <li>Privacy</li>
+          <li>Sitemap</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <hr class="my-4">
+  
+  <div class="bottom-bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <p>&copy; 2024-Bcapz.com</p>
+        </div>
+            
+      </div>
+    </div>
+  </div>
+  
+  </footer>
+    
+</body>
+</html>

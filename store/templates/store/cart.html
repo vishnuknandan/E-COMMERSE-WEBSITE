@@ -1,0 +1,113 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <title>{% block title %}Cart{% endblock title %}</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">E-BlackCapz</a>
+        </div>
+    </nav>
+
+    <br><br><br>
+    <div class="container">
+        <div class="h4 pb-2 mb-4 text-danger text-center border-bottom border-danger my-3">Cart</div>
+
+        <div class="card">
+            <div class="row">
+                {% for i in data %}
+                <div class="col-4 d-flex align-items-center">
+                    <img src="{{ i.item.product_image.url }}" alt="" class="mt-3 mb-3" style="height: 200px;">
+                </div>
+                <div class="col-8 mb-5">
+                    <div class="card-body">
+                        <div class="card-title fw-bolder">{{ i.item.name }}</div>
+                    </div>
+                    
+                    <dt class="col-3">Price</dt>
+                    <dd class="col-9">{{ i.item.original_price }}</dd>
+                    
+                    <dt class="col-3">Flash Off</dt>
+                    <dd class="col-9 selling-price" data-price="{{ i.item.selling_price }}">{{ i.item.selling_price }}</dd>
+
+                    <div class="col-md-4 col-6 mb-3">
+                        <label class="mb-2 d-block">Quantity</label>
+                        <div class="input-group mb-3" style="width: 170px;">
+                            <button class="btn btn-white border border-secondary px-3 decrease-qty" type="button">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <input type="text" class="form-control text-center border border-secondary quantity" value="1" readonly />
+                            <button class="btn btn-white border border-secondary px-3 increase-qty" type="button">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <dt class="col-3">Total Price</dt>
+                    <dd class="col-9 total-item-price">{{ i.item.selling_price }}</dd>
+
+                    <a href="{% url 'buy' i.item.id %}" class="btn btn-warning shadow-0"> Buy now </a>
+                    <a href="{% url 'del' i.id %}" class="btn btn-light border border-secondary py-2 icon-hover px-3"> Remove </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <hr>
+        <h4 class="text-center">Grand Total: <span id="grand-total">0</span></h4>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            updateGrandTotal();
+
+            document.querySelectorAll(".increase-qty").forEach(button => {
+                button.addEventListener("click", function () {
+                    let qtyInput = this.previousElementSibling;
+                    let newQty = parseInt(qtyInput.value) + 1;
+                    qtyInput.value = newQty;
+                    updateItemTotal(this);
+                    updateGrandTotal();
+                });
+            });
+
+            document.querySelectorAll(".decrease-qty").forEach(button => {
+                button.addEventListener("click", function () {
+                    let qtyInput = this.nextElementSibling;
+                    let newQty = Math.max(1, parseInt(qtyInput.value) - 1);
+                    qtyInput.value = newQty;
+                    updateItemTotal(this);
+                    updateGrandTotal();
+                });
+            });
+
+            function updateItemTotal(button) {
+                let parent = button.closest(".col-8");
+                let price = parseFloat(parent.querySelector(".selling-price").dataset.price);
+                let qty = parseInt(parent.querySelector(".quantity").value);
+                let totalPrice = price * qty;
+                parent.querySelector(".total-item-price").textContent = totalPrice.toFixed(2);
+            }
+
+            function updateGrandTotal() {
+                let total = 0;
+                document.querySelectorAll(".total-item-price").forEach(itemTotal => {
+                    total += parseFloat(itemTotal.textContent);
+                });
+                document.getElementById("grand-total").textContent = total.toFixed(2);
+            }
+        });
+    </script>
+</body>
+</html>

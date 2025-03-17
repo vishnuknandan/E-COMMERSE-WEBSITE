@@ -1,0 +1,18 @@
+<!-- order_success.html -->
+{% extends 'store/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg p-4 border-0 rounded-4">
+                <h2 class="text-center text-success">Order Placed Successfully!</h2>
+                <p class="text-center">Thank you for your purchase. Your order is being processed and will be shipped shortly.</p>
+                <div class="text-center">
+                    <a href="{% url 'home' %}" class="btn btn-primary">Continue Shopping</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

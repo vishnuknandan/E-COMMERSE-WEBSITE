@@ -1,0 +1,162 @@
+{% extends 'store\base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            <div class="card shadow-lg p-4 border-0 rounded-4">
+                <div class="row g-4">
+                    <!-- Product Image Section -->
+                    <div class="col-md-5 text-center">
+                        <!-- Thumbnail images -->
+                        <div class="product-image-gallery">
+                            <div class="main-image">
+                                <img src="{{ product.product_image.url }}" alt="{{ product.name }}" class="img-fluid rounded product-image">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Details & Order Form -->
+                    <div class="col-md-7 d-flex flex-column justify-content-between">
+                        <h2 class="fw-bold">{{ product.name }}</h2>
+                        
+                        <!-- Product Rating -->
+                        <div class="rating mb-2">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star-half-alt text-warning"></i>
+                            <i class="fas fa-star text-muted"></i>
+                            <span class="ms-2 text-muted">4.5 (125 Reviews)</span>
+                        </div>
+
+                        <!-- Stock Info & Price -->
+                        <p class="text-muted"><strong>Stock Available:</strong> {{ product.quantity }}</p>
+                        <p class="h4 text-primary"><strong>Price per unit:</strong> $<span id="unit-price">{{ product.selling_price }}</span></p>
+                        <p class="h4 text-success"><strong>Total Price:</strong> $<span id="total-price">{{ product.selling_price }}</span></p>
+
+                        <!-- Quantity Selector -->
+                        <div class="d-flex align-items-center mt-3">
+                            <button class="btn btn-outline-secondary btn-sm" id="decrease-qty">−</button>
+                            <input type="number" id="quantity" name="quantity" class="form-control text-center mx-2" value="1" min="1" max="{{ product.quantity }}" required style="max-width: 60px;">
+                            <button class="btn btn-outline-secondary btn-sm" id="increase-qty">+</button>
+                        </div>
+
+                        <!-- Order Form -->
+                        <form method="post" class="mt-4">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="address" class="form-label fw-semibold">Shipping Address</label>
+                                {{ form.address }}
+                            </div>
+                            <button type="submit" class="btn btn-lg btn-primary w-100">
+                                <i class="fas fa-shopping-cart"></i> Place Order
+                            </button>
+                        </form>
+
+                        <!-- Back to Shop -->
+                        <div class="text-center mt-3">
+                            <a href="{% url 'home' %}" class="text-decoration-none text-muted">
+                                <i class="fas fa-arrow-left"></i> Continue Shopping
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript for Dynamic Price Update & Quantity Controls -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const quantityInput = document.getElementById("quantity");
+        const unitPrice = parseFloat(document.getElementById("unit-price").innerText);
+        const totalPriceElement = document.getElementById("total-price");
+        const increaseBtn = document.getElementById("increase-qty");
+        const decreaseBtn = document.getElementById("decrease-qty");
+
+        function updateTotalPrice() {
+            let quantity = parseInt(quantityInput.value);
+            if (isNaN(quantity) || quantity < 1) {
+                quantity = 1;
+                quantityInput.value = 1;
+            }
+            let totalPrice = unitPrice * quantity;
+            totalPriceElement.innerText = totalPrice.toFixed(2);
+        }
+
+        increaseBtn.addEventListener("click", function () {
+            let quantity = parseInt(quantityInput.value);
+            if (quantity < {{ product.quantity }}) {
+                quantityInput.value = quantity + 1;
+                updateTotalPrice();
+            }
+        });
+
+        decreaseBtn.addEventListener("click", function () {
+            let quantity = parseInt(quantityInput.value);
+            if (quantity > 1) {
+                quantityInput.value = quantity - 1;
+                updateTotalPrice();
+            }
+        });
+
+        quantityInput.addEventListener("input", updateTotalPrice);
+    });
+
+    // Function to change main image based on thumbnail click
+    function changeImage(thumbnail) {
+        const mainImage = document.querySelector('.main-image img');
+        mainImage.src = thumbnail.src;
+    }
+</script>
+
+<!-- Custom Styles -->
+<style>
+    .product-image {
+        max-height: 350px;
+        object-fit: cover;
+        border-radius: 12px;
+        transition: transform 0.3s ease;
+    }
+    .product-image:hover {
+        transform: scale(1.05);
+    }
+    .product-image-gallery {
+        position: relative;
+    }
+    .thumbnails img {
+        cursor: pointer;
+        transition: transform 0.3s;
+    }
+    .thumbnails img:hover {
+        transform: scale(1.1);
+    }
+    .rating i {
+        font-size: 18px;
+    }
+    .card {
+        border-radius: 15px;
+        background: #fff;
+    }
+    .btn-primary {
+        background: linear-gradient(135deg, #007bff, #0056b3);
+        border: none;
+        padding: 12px;
+        font-weight: bold;
+    }
+    .btn-primary:hover {
+        background: linear-gradient(135deg, #0056b3, #004494);
+    }
+    .btn-outline-secondary {
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+    .form-control {
+        border-radius: 8px;
+    }
+</style>
+{% endblock %}

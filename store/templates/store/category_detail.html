@@ -1,0 +1,35 @@
+{% extends 'store\base.html' %}
+{% load static %}
+{% block title%}
+BlackCapz--online shopping
+{% endblock title %}
+
+{% block content %}
+
+<br>
+<div class="container">
+    <div class="h4 pb-2 mb-4 text-dark text-center border-bottom border-danger my-3">{{name.name}}</div>
+    <br>
+
+    <div class="row">
+        {% for i in data %}
+        <div class="col-md-2 mb-3">
+            <a href="{% url 'pdet' i.id %}">
+                <div class="card">
+                    <img src="{{ i.product_image.url }}" class="card-img-top" alt="..." height="150px" width="250px">
+                    <div class="card-body text-center">
+                    </a>
+                       <div> <p style="font-size:small">{{i.name}}</p>
+                        <p class="card-text"><s>INR ₹ {{i.original_price}}</s></p>
+                        <h4 class="card-text">₹{{i.selling_price}}</h4>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock %}

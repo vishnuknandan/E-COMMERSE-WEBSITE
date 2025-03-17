@@ -1,0 +1,59 @@
+{% extends 'store/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Your Orders</h2>
+
+    {% if data %}
+    <div class="order-list">
+        {% for order in data %}
+        <div class="order-item card shadow-sm mb-4">
+            <div class="card-header">
+                <h4>Order #{{ order.id }} - {{ order.date_order|date:"F j, Y" }}</h4>
+            </div>
+
+            <div class="card-body">
+                <!-- Product Information -->
+                <div class="row">
+                    <div class="col-md-3">
+                        <!-- Displaying the Product Image -->
+                        {% if order.orderitem.product_image %}
+                            <img src="{{ order.orderitem.product_image.url }}" alt="{{ order.orderitem.name }}" class="img-fluid">
+                        {% else %}
+                            <img src="{% static 'images/default.jpg' %}" alt="No image available" class="img-fluid">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6">
+                        <h5>{{ order.orderitem.name }}</h5>
+                        <p><strong>Quantity:</strong> {{ order.qty }}</p>
+                        <p><strong>Price:</strong> ${{ order.price }}</p>
+                        <p><strong>Address:</strong> {{ order.address }}</p>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <h5>Status: 
+                            {% if order.order_sts == "pending" %}
+                                <span class="badge badge-warning">Pending</span>
+                            {% elif order.order_sts == "shipped" %}
+                                <span class="badge badge-info">Shipped</span>
+                            {% elif order.order_sts == "delivered" %}
+                                <span class="badge badge-success">Delivered</span>
+                            {% else %}
+                                <span class="badge badge-danger">Cancelled</span>
+                            {% endif %}
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% else %}
+    <div class="alert alert-info" role="alert">
+        You have not placed any orders yet. Start shopping now!
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

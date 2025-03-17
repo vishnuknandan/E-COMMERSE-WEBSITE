@@ -1,0 +1,30 @@
+{% extends 'store\base.html' %}
+{% load static %}
+{% block title%}
+BlackCapz--online shopping
+{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <div class="h4 pb-2 mb-4 text-danger text-center border-bottom border-danger my-3">Categories</div>
+
+    <div class="row">
+        {% for i in categories %}
+        <div class="col-md-3 mb-4"> 
+            <a href="{% url 'cat' i.id%}">
+                <div class="card">
+                    <img src="{{ i.image.url }}" class="card-img-top" alt="..." height="150px" width="250px">
+                    <div class="card-body text-center">
+            </a>
+            <p class="card-text">{{i.name}}</p>
+        </div>
+    </div>
+</div>
+{% endfor %}
+</div>
+</div>
+
+
+
+{% endblock %}
